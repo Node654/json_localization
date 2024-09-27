@@ -5,5 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(AccountController::class)->prefix('/v1/account/')->group(function () {
-    Route::post('create', 'store');
+    Route::post('create', 'store')->name('account.store');
+    Route::post('sign-in', 'signIn')->name('account.signIn');
 });
