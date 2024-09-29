@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\AccountController;
+namespace App\Http\Controllers\Api\v1\Account;
 
 use App\Facades\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Account\SignInRequest;
 use App\Http\Requests\Api\v1\Account\StoreRequest;
+use App\Http\Resources\Api\v1\Account\UserResource;
 use Illuminate\Http\JsonResponse;
 
 class AccountController extends Controller
@@ -21,5 +22,10 @@ class AccountController extends Controller
         return response()->json([
             'token' => $request->signIn()
         ]);
+    }
+
+    public function show()
+    {
+        return new UserResource(auth()->user());
     }
 }

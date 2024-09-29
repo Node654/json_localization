@@ -2,6 +2,7 @@
 
 namespace App\Facades;
 
+use App\Http\Requests\Api\v1\Account\SignInRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Facade;
 

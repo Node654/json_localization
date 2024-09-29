@@ -3,6 +3,7 @@
 namespace App\Services\Account;
 
 use App\Exceptions\Account\InvalidUserCredentialsException;
+use App\Http\Requests\Api\v1\Account\SignInRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
@@ -17,7 +18,7 @@ class AccountService
             'name' => Arr::get($data, 'name'),
             'email' => Arr::get($data, 'email'),
             'account_type' => Arr::get($data, 'accountType'),
-            'company_name' => $data['companyName'],
+            'company_name' => Arr::get($data, 'accountType') === 'ltd' ? Arr::get($data, 'companyName') : null,
             'password' => Hash::make(Arr::get($data, 'password.value')),
         ]);
     }
@@ -32,6 +33,7 @@ class AccountService
         if (! empty($user))
         {
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
+                $user->tokens()->delete();
                 return $user->createToken('api-token')->plainTextToken;
             }
         }
