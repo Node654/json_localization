@@ -13,7 +13,7 @@ class StoreProjectRequest extends FormRequest
             'name' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
             'languages' => 'required', 'array', 'required_array_keys:source,target',
-            'languages.source' => 'required|int',
+            'languages.source' => 'required|int|exists:languages,id',
             'languages.target.*' => 'required|int',
             'settings' => 'required', 'required_array_keys:useMachineTranslate',
             'useMachineTranslate' => 'bool',
