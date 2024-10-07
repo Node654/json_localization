@@ -8,3 +8,8 @@ function redirectOk(): JsonResponse
         'status' => 'success'
     ]);
 }
+
+function authUserId(): int
+{
+    return auth()->id();
+}

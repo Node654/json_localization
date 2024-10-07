@@ -13,12 +13,16 @@ class Project extends Model
 
     protected $table = 'projects';
 
+    protected $with = ['sourceLanguage', 'user'];
+
     protected $fillable = [
         'name',
         'description',
         'use_machine_translate',
         'source_language_id',
-        'target_language_ids'
+        'target_language_ids',
+        'user_id',
+        'progress'
     ];
 
     protected $casts = [
@@ -29,6 +33,11 @@ class Project extends Model
     public function sourceLanguage(): BelongsTo
     {
         return $this->belongsTo(Language::class, 'source_language_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function targetLanguages(): Collection

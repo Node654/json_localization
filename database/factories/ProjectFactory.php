@@ -19,6 +19,7 @@ class ProjectFactory extends Factory
     {
         $sourceLanguageId = Language::inRandomOrder()->first()->id;
         return [
+            'user_id' => 1,
             'name' => fake()->name,
             'description' => fake()->text(50),
             'source_language_id' => $sourceLanguageId,

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static \App\Models\Project store(array $data)
+ * @method static ProjectService setProject(\App\Models\Project $project)
  * @see ProjectService
  */
 class Project extends Facade
