@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\Account\InvalidUserCredentialsException;
+use App\Http\Middleware\Api\v1\CheckProjectRefersToUser;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\JsonResponse;
 
-function redirectOk(): JsonResponse
+function responseOk(): JsonResponse
 {
     return response()->json([
         'status' => 'success'

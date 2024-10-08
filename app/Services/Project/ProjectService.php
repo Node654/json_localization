@@ -7,7 +7,6 @@ use App\Http\Resources\Api\v1\Project\ProjectResource;
 use App\Models\Project;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class ProjectService
 {

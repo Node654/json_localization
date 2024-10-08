@@ -14,7 +14,7 @@ class AccountController extends Controller
     public function store(StoreRequest $request)
     {
         $request->createAccount();
-        return redirectOk();
+        return responseOk();
     }
 
     public function signIn(SignInRequest $request): JsonResponse

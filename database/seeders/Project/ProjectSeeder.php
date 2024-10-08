@@ -3,7 +3,7 @@
 namespace Database\Seeders\Project;
 
 use App\Models\Project;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\DocumentFactory;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -13,6 +13,6 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(10)->create();
+        Project::factory(10)->has(new DocumentFactory())->create();
     }
 }
