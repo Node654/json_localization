@@ -4,6 +4,7 @@ namespace App\Services\Document;
 
 use App\Http\Resources\Api\v1\Document\DocumentResource;
 use App\Http\Resources\Api\v1\Document\MinifiedDocumentResource;
+use App\Models\Document;
 use App\Models\Project;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -30,5 +31,11 @@ class DocumentService
     public function list(): JsonResource
     {
         return MinifiedDocumentResource::collection($this->project->documents()->get());
+    }
+
+    public function destroy(Document $document): JsonResponse
+    {
+        $document->delete();
+        return responseOk();
     }
 }
