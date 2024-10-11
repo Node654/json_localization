@@ -18,7 +18,7 @@ class StoreRequest extends FormRequest
             'companyName' => ['required_if:accountType,'.AccountType::LTD->value],
             'password' => ['required', 'required_array_keys:value,confirmation'],
             'password.value' => ['required', 'min:4', 'max:8'],
-            'password.confirmation' => ['same:password.value']
+            'password.confirmation' => ['same:password.value'],
         ];
     }
 
@@ -27,4 +27,3 @@ class StoreRequest extends FormRequest
         Account::store($this->validated());
     }
 }
-

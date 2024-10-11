@@ -26,7 +26,7 @@ class MinifiedProjectResource extends JsonResource
             'performersCount' => 0,
             'documentsCount' => 0,
             'usedMachineTranslate' => $this->use_machine_translate,
-            'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i')
+            'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i'),
         ];
     }
 }

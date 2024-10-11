@@ -12,7 +12,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:50', 'string', 'unique:languages,name'],
-            'locale' => ['required', 'max:50', 'string', 'unique:languages,locale']
+            'locale' => ['required', 'max:50', 'string', 'unique:languages,locale'],
         ];
     }
 

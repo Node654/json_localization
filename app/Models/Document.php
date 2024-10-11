@@ -15,13 +15,28 @@ class Document extends Model
     protected $fillable = [
         'project_id',
         'name',
-        'data'
+        'data',
     ];
 
     protected $casts = ['data' => 'array'];
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(Project::class, 'id', 'project_id');
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function getStatus(): string
+    {
+        $progress = $this->project->progress;
+
+        switch ($progress)
+        {
+            case $progress === 100:
+                return 'completed';
+            case $progress > 0 && $progress < 100:
+                return 'in progress';
+            default:
+                return 'created';
+        }
     }
 }

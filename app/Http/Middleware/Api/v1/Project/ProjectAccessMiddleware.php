@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware\Api\v1;
+namespace App\Http\Middleware\Api\v1\Project;
 
 use App\Exceptions\Account\NotHaveRightsPerformOperationException;
 use App\Models\Project;
@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckProjectRefersToUser
+class ProjectAccessMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,12 @@ class CheckProjectRefersToUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $project = Project::query()->findOrFail($request->input('projectId'));
+        /**
+         * @var Project $project
+         */
+        $project = $request->route('project');
 
-        if (! is_null($project) && ! $project->authUserCheck()) {
+        if (! $project->hasAccess()) {
             throw new NotHaveRightsPerformOperationException;
         }
 

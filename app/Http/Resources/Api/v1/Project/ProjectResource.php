@@ -3,8 +3,6 @@
 namespace App\Http\Resources\Api\v1\Project;
 
 use App\Http\Resources\Api\v1\Language\LanguageResource;
-use App\Http\Resources\Api\v1\Language\SourceLanguage;
-use App\Http\Resources\Api\v1\Language\TargetResource;
 use App\Http\Resources\Api\v1\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -32,9 +30,9 @@ class ProjectResource extends JsonResource
             'documents' => [],
             'performers' => [],
             'settings' => [
-                'useMachineTranslate' => $this->use_machine_translate
+                'useMachineTranslate' => $this->use_machine_translate,
             ],
-            'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i')
+            'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i'),
         ];
     }
 }

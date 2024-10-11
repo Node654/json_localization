@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static JsonResponse store(array $data)
+ *
  * @see LanguageService
  */
 class Language extends Facade

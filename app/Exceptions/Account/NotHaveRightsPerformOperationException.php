@@ -12,7 +12,7 @@ class NotHaveRightsPerformOperationException extends Exception
     {
         return response()->json([
             'status' => 'failed',
-            'message' => __("exceptions.NotHaveRightsPerformOperation")
+            'message' => __('exceptions.NotHaveRightsPerformOperation'),
         ], 403);
     }
 }

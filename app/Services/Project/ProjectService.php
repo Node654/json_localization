@@ -18,10 +18,10 @@ class ProjectService
             name: Arr::get($data, 'name'),
             userId: authUserId(),
             description: Arr::get($data, 'description'),
-            sourceLanguageId:Arr::get($data, 'languages.source'),
-            targetLanguagesIds:Arr::get($data, 'languages.target'),
-            useMachineTranslate:Arr::get($data, 'settings.useMachineTranslate'),
-            progress:Arr::get($data, 'progress')
+            sourceLanguageId: Arr::get($data, 'languages.source'),
+            targetLanguagesIds: Arr::get($data, 'languages.target'),
+            useMachineTranslate: Arr::get($data, 'settings.useMachineTranslate'),
+            progress: Arr::get($data, 'progress')
         );
 
         $data = Project::create([
@@ -31,7 +31,7 @@ class ProjectService
             'source_language_id' => $projectDto->sourceLanguageId,
             'target_language_ids' => $projectDto->targetLanguagesIds,
             'use_machine_translate' => $projectDto->useMachineTranslate,
-            'progress' => $projectDto->progress
+            'progress' => $projectDto->progress,
         ]);
 
         return new ProjectResource($data);
@@ -40,6 +40,7 @@ class ProjectService
     public function setProject(Project $project): ProjectService
     {
         $this->project = $project;
+
         return $this;
     }
 

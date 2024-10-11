@@ -13,7 +13,7 @@ class InvalidUserCredentialsException extends Exception
     {
         return response()->json([
             'status' => 'failed',
-            'message' => __("exceptions.{$this->getMessage()}")
+            'message' => __("exceptions.{$this->getMessage()}"),
         ], 401);
     }
 }

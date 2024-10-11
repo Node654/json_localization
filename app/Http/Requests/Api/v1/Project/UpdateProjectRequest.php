@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Api\v1\Project;
 
-use App\Models\Project;
 use App\Facades\Project as ProjectService;
+use App\Models\Project;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +19,7 @@ class UpdateProjectRequest extends FormRequest
             'languages.target.*' => 'nullable|int',
             'settings' => 'nullable', 'nullable_array_keys:useMachineTranslate',
             'useMachineTranslate' => 'nullable|bool',
-            'progress' => 'nullable|int|max:100'
+            'progress' => 'nullable|int|max:100',
         ];
     }
 

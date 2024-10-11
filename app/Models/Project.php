@@ -23,12 +23,13 @@ class Project extends Model
         'source_language_id',
         'target_language_ids',
         'user_id',
-        'progress'
+        'progress',
     ];
 
     protected $casts = [
         'use_machine_translate' => 'boolean',
-        'target_language_ids' => 'array'
+        'target_language_ids' => 'array',
+        'progress' => 'float'
     ];
 
     public function sourceLanguage(): BelongsTo
@@ -54,5 +55,10 @@ class Project extends Model
     public function authUserCheck(): bool
     {
         return $this->user_id === authUserId();
+    }
+
+    public function hasAccess(): bool
+    {
+        return $this->authUserCheck();
     }
 }

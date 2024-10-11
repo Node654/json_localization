@@ -9,8 +9,9 @@ class LanguageService
     public function store(array $data)
     {
         Language::create($data);
+
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
         ]);
     }
 }

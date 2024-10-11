@@ -3,9 +3,7 @@
 namespace App\Services\Account;
 
 use App\Exceptions\Account\InvalidUserCredentialsException;
-use App\Http\Requests\Api\v1\Account\SignInRequest;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,14 +28,14 @@ class AccountService
     {
         $user = User::query()->where('email', $email)->first();
 
-        if (! empty($user))
-        {
+        if (! empty($user)) {
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 $user->tokens()->delete();
+
                 return $user->createToken('api-token')->plainTextToken;
             }
         }
 
-        throw new InvalidUserCredentialsException();
+        throw new InvalidUserCredentialsException;
     }
 }

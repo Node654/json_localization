@@ -19,7 +19,7 @@ class LanguageFactory extends Factory
     {
         return [
             'name' => Str::ucfirst(fake()->country),
-            'locale' => Str::lower(fake()->languageCode)
+            'locale' => Str::lower(fake()->languageCode),
         ];
     }
 }

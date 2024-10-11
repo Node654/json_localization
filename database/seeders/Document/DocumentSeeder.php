@@ -3,7 +3,6 @@
 namespace Database\Seeders\Document;
 
 use App\Models\Document;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DocumentSeeder extends Seeder

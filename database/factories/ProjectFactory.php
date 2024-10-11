@@ -18,6 +18,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         $sourceLanguageId = Language::inRandomOrder()->first()->id;
+
         return [
             'user_id' => 1,
             'name' => fake()->name,
@@ -26,8 +27,7 @@ class ProjectFactory extends Factory
             'target_language_ids' => Language::query()->whereNot('id', $sourceLanguageId)->inRandomOrder()->limit(3)->get()->map(function ($el) {
                 return $el->id;
             })->toArray(),
-            'use_machine_translate' => fake()->boolean()
+            'use_machine_translate' => fake()->boolean(),
         ];
     }
 }
-

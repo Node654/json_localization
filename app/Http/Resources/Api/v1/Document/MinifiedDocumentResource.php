@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Api\v1\Account;
+namespace App\Http\Resources\Api\v1\Document;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class MinifiedDocumentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +18,9 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'type' => $this->account_type,
-            'companyName' => $this->company_name,
+            'status' => $this->getStatus(),
+            'progress' => $this->project->progress,
+            'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i'),
         ];
     }
 }

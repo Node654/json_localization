@@ -30,8 +30,8 @@ class DocumentFactory extends Factory
                 [
                     'key' => fake()->sentence(2),
                     'value' => fake()->sentence,
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }
