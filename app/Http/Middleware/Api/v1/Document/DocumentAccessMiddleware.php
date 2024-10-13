@@ -17,7 +17,6 @@ class DocumentAccessMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $document = $request->route('document');
-
         $project = $document->project;
 
         if (! is_null($project) && ! $project->hasAccess())

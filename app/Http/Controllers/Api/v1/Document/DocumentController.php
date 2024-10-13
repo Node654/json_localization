@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Document\AddDocumentsRequest;
 use App\Http\Requests\Api\v1\Document\GetDocumentsRequest;
 
+use App\Http\Requests\Api\v1\Document\ImportTranslationsRequest;
 use App\Models\Project;
 use App\Models\Document;
 use Illuminate\Http\JsonResponse;
@@ -22,6 +23,11 @@ class DocumentController extends Controller
     public function list(GetDocumentsRequest $request): JsonResource
     {
         return $request->getDocuments();
+    }
+
+    public function importTranslations(ImportTranslationsRequest $request, Document $document)
+    {
+        return DocumentFacade::setDocument($document)->importTranslations($request->validated());
     }
 
     public function destroy(Document $document): JsonResponse
