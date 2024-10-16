@@ -3,11 +3,12 @@
 namespace App\Http\Middleware\Api\v1\Document;
 
 use App\Exceptions\Account\NotHaveRightsPerformOperationException;
+use App\Models\Document;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class DocumentAccessMiddleware
+class DocumentShowMiddleware
 {
     /**
      * Handle an incoming request.
@@ -22,7 +23,6 @@ class DocumentAccessMiddleware
         {
             throw new NotHaveRightsPerformOperationException();
         }
-
         return $next($request);
     }
 }

@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Middleware\Api\v1\Document;
+namespace App\Http\Middleware\Api\v1;
 
-use App\Exceptions\Account\NotHaveRightsPerformOperationException;
+use App\Exceptions\Lang\ProjectTargetLanguageSelectedException;
+use App\Models\Document;
+use App\Models\Project;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class DocumentAccessMiddleware
+class CheckProjectTargetLangMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +18,17 @@ class DocumentAccessMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        /**
+         * @var Document $document
+         */
         $document = $request->route('document');
+        /**
+         * @var Project $project
+         */
         $project = $document->project;
-        if (! is_null($project) && ! $project->hasAccess())
+        if (! $project->hasTargetLanguage($request->input('locale')))
         {
-            throw new NotHaveRightsPerformOperationException();
+            throw new ProjectTargetLanguageSelectedException();
         }
 
         return $next($request);

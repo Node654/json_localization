@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static JsonResource list()
  * @method static JsonResponse destroy(\App\Models\Document $document)
  * @method static JsonResponse importTranslations(array $data)
+ * @method static JsonResource getDocument(string $locale)
  *
  * @see \App\Services\Document\DocumentService
  */

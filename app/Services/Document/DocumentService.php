@@ -4,6 +4,7 @@ namespace App\Services\Document;
 
 use App\Http\Resources\Api\v1\Document\DocumentResource;
 use App\Http\Resources\Api\v1\Document\MinifiedDocumentResource;
+use App\Http\Resources\Api\v1\Document\ShowDocumentResource;
 use App\Models\Document;
 use App\Models\Project;
 use App\Models\Translation;
@@ -36,14 +37,14 @@ class DocumentService
         return MinifiedDocumentResource::collection($this->project->documents()->get());
     }
 
-    public function importTranslations(array $translationsData)
+    public function importTranslations(array $translationsData): JsonResponse
     {
         $translatedData = [];
 
         $existingTranslations = Translation::query()->where(
             [
                 'document_id' => $this->document->id,
-                'language_id' => $translationsData['lang'],
+                'language_id' => $translationsData['locale'],
             ]
         )->first();
 
@@ -70,12 +71,17 @@ class DocumentService
 
         Translation::query()->updateOrCreate([
             'document_id' => $this->document->id,
-            'language_id' => $translationsData['lang'],
+            'language_id' => $translationsData['locale'],
         ], [
             'data' => $translatedData
         ]);
 
         return responseOk();
+    }
+
+    public function getDocument(): JsonResource
+    {
+        return new ShowDocumentResource($this->document);
     }
 
     public function setDocument(Document $document): DocumentService

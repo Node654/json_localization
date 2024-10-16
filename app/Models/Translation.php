@@ -22,9 +22,9 @@ class Translation extends Model
 
     protected $casts = ['data' => 'array'];
 
-    public function documents(): BelongsToMany
+    public function document(): BelongsTo
     {
-        return $this->belongsToMany(Document::class, 'document_id', 'id');
+        return $this->belongsTo(Document::class, 'document_id', 'id');
     }
 
     public function languages(): BelongsToMany

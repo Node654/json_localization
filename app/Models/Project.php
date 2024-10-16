@@ -61,4 +61,15 @@ class Project extends Model
     {
         return $this->authUserCheck();
     }
+
+    public function hasTargetLanguage(int|string $locale): bool
+    {
+        if (is_int($locale))
+        {
+            return in_array($locale, $this->target_language_ids);
+        } else {
+            $language = Language::query()->where('locale', $locale)->first();
+            return in_array($language->id, $this->target_language_ids);
+        }
+    }
 }
