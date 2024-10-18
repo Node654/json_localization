@@ -19,7 +19,7 @@ class MinifiedDocumentResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'status' => $this->getStatus(),
-            'progress' => $this->project->progress,
+            'progress' => $this->progress,
             'createdAt' => Carbon::parse($this->created_at)->format('Y-m-d H:i'),
         ];
     }

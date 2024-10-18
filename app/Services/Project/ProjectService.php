@@ -21,7 +21,6 @@ class ProjectService
             sourceLanguageId: Arr::get($data, 'languages.source'),
             targetLanguagesIds: Arr::get($data, 'languages.target'),
             useMachineTranslate: Arr::get($data, 'settings.useMachineTranslate'),
-            progress: Arr::get($data, 'progress')
         );
 
         $data = Project::create([
@@ -31,7 +30,6 @@ class ProjectService
             'source_language_id' => $projectDto->sourceLanguageId,
             'target_language_ids' => $projectDto->targetLanguagesIds,
             'use_machine_translate' => $projectDto->useMachineTranslate,
-            'progress' => $projectDto->progress,
         ]);
 
         return new ProjectResource($data);
@@ -52,7 +50,6 @@ class ProjectService
             sourceLanguageId: Arr::get($data, 'languages.source') ?? $this->project->source_language_id,
             targetLanguagesIds: Arr::get($data, 'languages.target') ?? $this->project->target_language_ids,
             useMachineTranslate: Arr::get($data, 'settings.useMachineTranslate') ?? $this->project->use_machine_translate,
-            progress: Arr::get($data, 'progress') ?? $this->project->progress,
         );
 
         $mappedData = $projectDto->mapProjectData($data);

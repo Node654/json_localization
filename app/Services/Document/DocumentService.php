@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
 
 class DocumentService
 {
@@ -76,6 +77,8 @@ class DocumentService
             'data' => $translatedData
         ]);
 
+        $this->updateProgressDocument();
+
         return responseOk();
     }
 
@@ -94,5 +97,15 @@ class DocumentService
     {
         $document->delete();
         return responseOk();
+    }
+
+    private function updateProgressDocument(): void
+    {
+        $totalSegments = $this->document->getTotalSegments();
+        $totalSegmentsTranslated = $this->document->getTotalSegmentTranslated();
+        $progress = number_format(($totalSegmentsTranslated / $totalSegments) * 100, 2);
+        $this->document->update([
+            'progress' => $progress
+        ]);
     }
 }

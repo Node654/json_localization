@@ -19,7 +19,6 @@ class UpdateProjectRequest extends FormRequest
             'languages.target.*' => 'nullable|int',
             'settings' => 'nullable', 'nullable_array_keys:useMachineTranslate',
             'useMachineTranslate' => 'nullable|bool',
-            'progress' => 'nullable|int|max:100',
         ];
     }
 

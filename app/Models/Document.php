@@ -18,9 +18,10 @@ class Document extends Model
         'project_id',
         'name',
         'data',
+        'progress'
     ];
 
-    protected $casts = ['data' => 'array'];
+    protected $casts = ['data' => 'array', 'progress' => 'float'];
 
     public function project(): BelongsTo
     {
@@ -29,13 +30,11 @@ class Document extends Model
 
     public function getStatus(): string
     {
-        $progress = $this->project->progress;
-
-        switch ($progress)
+        switch (true)
         {
-            case $progress === 100:
+            case $this->progress === 100:
                 return 'completed';
-            case $progress > 0 && $progress < 100:
+            case $this->progress > 0 && $this->progress < 100:
                 return 'in progress';
             default:
                 return 'created';
@@ -68,5 +67,26 @@ class Document extends Model
         }
 
         return $dataDocument;
+    }
+
+    public function getTotalSegmentTranslated(): int
+    {
+        $totalTranslatedDocumentValues = 0;
+        foreach ($this->translations as $translation)
+        {
+            $translatedDocumentValues = Arr::where($translation->data, function ($el) {
+                return !empty($el['value']) && is_string($el['value']);
+            });
+            if (! empty($translatedDocumentValues))
+            {
+                $totalTranslatedDocumentValues += count($translatedDocumentValues);
+            }
+        }
+        return $totalTranslatedDocumentValues;
+    }
+
+    public function getTotalSegments(): int
+    {
+        return count($this->data) * count($this->project->target_language_ids);
     }
 }

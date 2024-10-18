@@ -14,6 +14,6 @@ class ProjectTargetLanguageSelectedException extends Exception
         return response()->json([
             'status' => 'failed',
             'message' => __('exceptions.InvalidSelectedTargetLanguage'),
-        ]);
+        ], 400);
     }
 }

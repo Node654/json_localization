@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->float('progress')->default(0);
+        Schema::table('documents', function (Blueprint $table) {
+            $table->decimal('progress')->default(0);
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
+        Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn('progress');
         });
     }

@@ -18,7 +18,6 @@ class StoreProjectRequest extends FormRequest
             'languages.target.*' => 'required|int|exists:languages,id',
             'settings' => 'required', 'required_array_keys:useMachineTranslate',
             'useMachineTranslate' => 'nullable|bool',
-            'progress' => 'nullable|int|max:100',
         ];
     }
 
