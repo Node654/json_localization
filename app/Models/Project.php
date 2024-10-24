@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -69,5 +70,10 @@ class Project extends Model
             $language = Language::query()->where('locale', $locale)->first();
             return in_array($language->id, $this->target_language_ids);
         }
+    }
+
+    public function performers(): BelongsToMany
+    {
+        return $this->belongsToMany(Performer::class, 'project_performer', 'project_id', 'performer_id');
     }
 }
