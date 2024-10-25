@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Controllers\Api\v1\Performer\PerformerController;
 use App\Http\Resources\Api\v1\Account\UserResource;
+use App\Http\Resources\Api\v1\Performer\PerformerProjectsResource;
 use App\Services\Account\AccountService;
 use App\Services\Document\DocumentService;
 use App\Services\Language\LanguageService;
@@ -33,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         UserResource::withoutWrapping();
+        PerformerProjectsResource::withoutWrapping();
     }
 }
