@@ -11,7 +11,7 @@ class ShowDocumentResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'data' => $this->getShowData($request->input('locale'))
+            'data' => $this->getShowData($request->input('locale')),
         ];
     }
 }

@@ -7,13 +7,13 @@ use Illuminate\Http\JsonResponse;
 
 class AppointmentExecutorForTheProjectException extends Exception
 {
-    protected $message  = 'AppointmentExecutorForTheProject';
+    protected $message = 'AppointmentExecutorForTheProject';
 
     public function render(): JsonResponse
     {
         return response()->json([
             'status' => 'failed',
-            'message' => __('exceptions.AppointmentExecutorForTheProject')
+            'message' => __('exceptions.AppointmentExecutorForTheProject'),
         ], 403);
     }
 }

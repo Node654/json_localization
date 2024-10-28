@@ -3,7 +3,6 @@
 namespace App\Services\Account;
 
 use App\Exceptions\Account\InvalidUserCredentialsException;
-use App\Models\Performer;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +20,7 @@ class AccountService
             'password' => Hash::make(Arr::get($data, 'password.value')),
         ]);
 
-        if ($user->account_type->value === 'freelancer' && is_string($user->account_type->value))
-        {
+        if ($user->account_type->value === 'freelancer' && is_string($user->account_type->value)) {
             $user->performer()->create();
         }
 

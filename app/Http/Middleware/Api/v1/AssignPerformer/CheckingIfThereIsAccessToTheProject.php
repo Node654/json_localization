@@ -14,7 +14,8 @@ class CheckingIfThereIsAccessToTheProject
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     *
      * @throws AppointmentExecutorForTheProjectException
      */
     public function handle(Request $request, Closure $next): Response
@@ -25,9 +26,8 @@ class CheckingIfThereIsAccessToTheProject
         $project = Project::find($request->input('projectId'));
         $performer = Performer::where('user_id', $request->input('performerId'))->first();
 
-        if (! $project->hasAccess() && $performer)
-        {
-            throw new AppointmentExecutorForTheProjectException();
+        if (! $project->hasAccess() && $performer) {
+            throw new AppointmentExecutorForTheProjectException;
         }
 
         return $next($request);

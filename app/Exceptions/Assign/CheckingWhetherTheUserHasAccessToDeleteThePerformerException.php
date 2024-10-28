@@ -13,7 +13,7 @@ class CheckingWhetherTheUserHasAccessToDeleteThePerformerException extends Excep
     {
         return response()->json([
             'status' => 'failed',
-            'message' => __('exceptions.CheckingWhetherTheUserHasAccessToDeleteThePerformer')
+            'message' => __('exceptions.CheckingWhetherTheUserHasAccessToDeleteThePerformer'),
         ], 401);
     }
 }

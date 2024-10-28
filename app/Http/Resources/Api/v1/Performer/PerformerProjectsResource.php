@@ -20,9 +20,9 @@ class PerformerProjectsResource extends JsonResource
             'name' => $this->name,
             'languages' => [
                 'source' => $this->source_language_id,
-                'target' => $this->target_language_ids
+                'target' => $this->target_language_ids,
             ],
-            'createdAt' => Carbon::parse($this->created_at)->format('d-m-Y H:i')
+            'createdAt' => Carbon::parse($this->created_at)->format('d-m-Y H:i'),
         ];
     }
 }

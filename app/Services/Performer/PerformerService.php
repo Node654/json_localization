@@ -13,6 +13,7 @@ class PerformerService
     public function index(): AnonymousResourceCollection
     {
         $projects = Project::query()->where('user_id', auth()->id())->get();
+
         return PerformerProjectsResource::collection($projects);
     }
 
@@ -20,10 +21,11 @@ class PerformerService
     {
         $performer = Performer::where('user_id', $data['performerId'])->firstOrFail();
         $performer->projects()->sync([
-            'project_id' => $data['projectId']
+            'project_id' => $data['projectId'],
         ]);
+
         return response()->json([
-            'status' => 'success'
+            'status' => 'success',
         ]);
     }
 }

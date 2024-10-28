@@ -26,9 +26,8 @@ class CheckProjectTargetLangMiddleware
          * @var Project $project
          */
         $project = $document->project;
-        if (! $project->hasTargetLanguage($request->input('locale')))
-        {
-            throw new ProjectTargetLanguageSelectedException();
+        if (! $project->hasTargetLanguage($request->input('locale'))) {
+            throw new ProjectTargetLanguageSelectedException;
         }
 
         return $next($request);

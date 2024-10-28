@@ -19,16 +19,15 @@ class CheckThereAccessAssignDelete
     {
         $performer = $request->route('performer');
         $projects = $performer->projects;
-        foreach ($projects as $project)
-        {
+        foreach ($projects as $project) {
             /**
              * @var Project $project
              */
-            if (! $project->hasAccess())
-            {
-                throw new CheckingWhetherTheUserHasAccessToDeleteThePerformerException();
+            if (! $project->hasAccess()) {
+                throw new CheckingWhetherTheUserHasAccessToDeleteThePerformerException;
             }
         }
+
         return $next($request);
     }
 }

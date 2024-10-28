@@ -18,7 +18,7 @@ class Document extends Model
         'project_id',
         'name',
         'data',
-        'progress'
+        'progress',
     ];
 
     protected $casts = ['data' => 'array', 'progress' => 'float'];
@@ -30,8 +30,7 @@ class Document extends Model
 
     public function getStatus(): string
     {
-        switch (true)
-        {
+        switch (true) {
             case $this->progress === 100:
                 return 'completed';
             case $this->progress > 0 && $this->progress < 100:
@@ -51,16 +50,14 @@ class Document extends Model
         $language = Language::query()->where('locale', $locale)->first();
         $translation = Translation::query()->where(['document_id' => $this->id, 'language_id' => $language->id])->first();
         $dataDocument = [];
-        foreach ($this->data as $item)
-        {
+        foreach ($this->data as $item) {
             $translatedValue = Arr::first($translation->data, function ($el) use ($item) {
                 return $el['key'] === $item['key'];
             });
 
             $data['key'] = $item['key'];
             $data['original'] = $item['value'];
-            if (! is_null($translatedValue))
-            {
+            if (! is_null($translatedValue)) {
                 $data['translation'] = $translatedValue['value'];
             }
             $dataDocument[] = $data;
@@ -72,16 +69,15 @@ class Document extends Model
     public function getTotalSegmentTranslated(): int
     {
         $totalTranslatedDocumentValues = 0;
-        foreach ($this->translations as $translation)
-        {
+        foreach ($this->translations as $translation) {
             $translatedDocumentValues = Arr::where($translation->data, function ($el) {
-                return !empty($el['value']) && is_string($el['value']);
+                return ! empty($el['value']) && is_string($el['value']);
             });
-            if (! empty($translatedDocumentValues))
-            {
+            if (! empty($translatedDocumentValues)) {
                 $totalTranslatedDocumentValues += count($translatedDocumentValues);
             }
         }
+
         return $totalTranslatedDocumentValues;
     }
 

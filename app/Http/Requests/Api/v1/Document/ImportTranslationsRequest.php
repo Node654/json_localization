@@ -10,9 +10,10 @@ class ImportTranslationsRequest extends FormRequest
     {
         return [
             'locale' => 'required|exists:languages,id',
-            'data' => 'required|array',
+            'data' => 'nullable|array',
             'data.*.key' => 'required|string|unique:documents,data->key',
             'data.*.value' => 'required|string',
+            'use_machine_translate' => 'nullable|boolean',
         ];
     }
 }

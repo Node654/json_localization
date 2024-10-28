@@ -24,8 +24,7 @@ class StoreProjectRequest extends FormRequest
     public function withValidator(Validator $validator)
     {
         $validator->after(function ($validator) {
-            if (in_array($this->input('languages.source'), $this->input('languages.target')))
-            {
+            if (in_array($this->input('languages.source'), $this->input('languages.target'))) {
                 /**
                  * @var Validator $validator
                  */

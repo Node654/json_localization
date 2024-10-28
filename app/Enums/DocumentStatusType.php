@@ -10,5 +10,3 @@ enum DocumentStatusType: string
 
     case COMPLETED = 'completed';
 }
-
-

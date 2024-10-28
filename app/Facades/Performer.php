@@ -3,7 +3,6 @@
 namespace App\Facades;
 
 use App\Services\Performer\PerformerService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Facade;
 

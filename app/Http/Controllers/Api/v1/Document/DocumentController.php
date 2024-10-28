@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Document\AddDocumentsRequest;
 use App\Http\Requests\Api\v1\Document\GetDocumentRequest;
 use App\Http\Requests\Api\v1\Document\GetDocumentsRequest;
-
 use App\Http\Requests\Api\v1\Document\ImportTranslationsRequest;
 use App\Models\Document;
 use Illuminate\Http\JsonResponse;

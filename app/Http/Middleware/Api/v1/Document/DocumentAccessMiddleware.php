@@ -18,9 +18,8 @@ class DocumentAccessMiddleware
     {
         $document = $request->route('document');
         $project = $document->project;
-        if (! is_null($project) && ! $project->hasAccess())
-        {
-            throw new NotHaveRightsPerformOperationException();
+        if (! is_null($project) && ! $project->hasAccess()) {
+            throw new NotHaveRightsPerformOperationException;
         }
 
         return $next($request);

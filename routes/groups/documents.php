@@ -15,4 +15,3 @@ Route::controller(DocumentController::class)->middleware('auth:sanctum')->prefix
     Route::delete('/{document}', 'destroy')->name('documents.destroy')->middleware(DocumentAccessMiddleware::class);
     Route::post('/{document}/import', 'importTranslations')->name('documents.import')->middleware([DocumentAccessMiddleware::class, CheckProjectTargetLangMiddleware::class]);
 });
-

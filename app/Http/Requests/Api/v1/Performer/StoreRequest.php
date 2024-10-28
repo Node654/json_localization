@@ -12,7 +12,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'projectId' => 'required|exists:projects,id',
-            'performerId' => 'required|exists:users,id'
+            'performerId' => 'required|exists:users,id',
         ];
     }
 

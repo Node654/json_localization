@@ -3,7 +3,6 @@
 namespace App\Http\Middleware\Api\v1\Document;
 
 use App\Exceptions\Account\NotHaveRightsPerformOperationException;
-use App\Models\Document;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +18,10 @@ class DocumentShowMiddleware
     {
         $document = $request->route('document');
         $project = $document->project;
-        if (! is_null($project) && ! $project->hasAccess())
-        {
-            throw new NotHaveRightsPerformOperationException();
+        if (! is_null($project) && ! $project->hasAccess()) {
+            throw new NotHaveRightsPerformOperationException;
         }
+
         return $next($request);
     }
 }

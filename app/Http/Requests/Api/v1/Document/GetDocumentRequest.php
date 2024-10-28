@@ -9,7 +9,7 @@ class GetDocumentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'locale' => 'required|string'
+            'locale' => 'required|string',
         ];
     }
 }

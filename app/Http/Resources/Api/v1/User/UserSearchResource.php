@@ -19,7 +19,7 @@ class UserSearchResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'type' => $this->account_type,
-            'companyName' => $this->company_name
+            'companyName' => $this->company_name,
         ];
     }
 }

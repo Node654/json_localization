@@ -10,7 +10,7 @@ class GetDocumentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'projectId' => 'required|exists:projects,id'
+            'projectId' => 'required|exists:projects,id',
         ];
     }
 
