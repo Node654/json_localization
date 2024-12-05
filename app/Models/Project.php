@@ -31,6 +31,7 @@ class Project extends Model
         'target_language_ids' => 'array',
     ];
 
+    // Получение оригинальных языков
     public function sourceLanguage(): BelongsTo
     {
         return $this->belongsTo(Language::class, 'source_language_id');
